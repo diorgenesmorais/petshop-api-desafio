@@ -24,7 +24,25 @@ const getByIdProprietario = async (id) => {
     }
 }
 
+const createProprietario = async (proprietario) => {
+    const conn = await connect();
+    try {
+        const { nome, telefone } = proprietario;
+        const sql = `INSERT INTO proprietarios
+                        (nome, telefone)
+                    VALUES ($1, $2) RETURNING *`;
+        const values = [nome, telefone];
+        const result = await conn.query(sql, values);
+        return result.rows[0];
+    } catch (error) {
+        throw error;
+    } finally {
+        conn.release();
+    }
+}
+
 export {
     getAllProprietarios,
-    getByIdProprietario
+    getByIdProprietario,
+    createProprietario
 }
