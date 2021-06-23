@@ -1,8 +1,9 @@
 import logger from '../register.logger.js';
-import { createProprietario } from '../repositories/proprietario.repository.js';
 import {
     getAll,
-    getById
+    getById,
+    save,
+    update
 } from '../services/proprietario.service.js';
 
 const findAll = async (req, res, next) => {
@@ -36,9 +37,24 @@ const register = async (req, res, next) => {
     try {
         const proprietario = req.body;
         validate(proprietario);
-        const result = await createProprietario(proprietario);
+        const result = await save(proprietario);
         res.status(201).send(result);
         logger.info('POST /proprietarios');
+    } catch (error) {
+        next(error);
+    }
+}
+
+const updateProprietario = async (req, res, next) => {
+    try {
+        const proprietario = req.body;
+        validate(proprietario);
+        if (!proprietario.id) {
+            throw new Error('O id é obrigatório');
+        }
+        const result = await update(proprietario);
+        res.status(200).send(result);
+        logger.info('PUT /proprietarios');
     } catch (error) {
         next(error);
     }
@@ -47,5 +63,6 @@ const register = async (req, res, next) => {
 export {
     findAll,
     findById,
-    register
+    register,
+    updateProprietario
 }

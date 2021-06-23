@@ -2,7 +2,8 @@ import express from 'express';
 import {
     findAll,
     findById,
-    register
+    register,
+    updateProprietario
 } from '../controllers/proprietario.controller.js';
 
 const router = express.Router();
@@ -10,5 +11,6 @@ const router = express.Router();
 router.get('/', findAll);
 router.get('/:id', findById);
 router.post('/', register);
+router.put('/', updateProprietario);
 
 export default router;
