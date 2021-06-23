@@ -1,5 +1,8 @@
 import logger from '../register.logger.js';
-import { getAll } from '../services/proprietario.service.js';
+import {
+    getAll,
+    getById
+} from '../services/proprietario.service.js';
 
 const findAll = async (req, res, next) => {
     try {
@@ -11,6 +14,17 @@ const findAll = async (req, res, next) => {
     }
 }
 
+const findById = async (req, res, next) => {
+    try {
+        const result = await getById(req.params.id);
+        res.status(200).send(result);
+        logger.info('GET /proprietarios by id');
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
-    findAll
+    findAll,
+    findById
 }

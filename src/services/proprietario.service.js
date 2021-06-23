@@ -1,7 +1,13 @@
-import { getAllProprietarios } from '../repositories/proprietario.repository.js';
+import {
+    getAllProprietarios,
+    getByIdProprietario
+} from '../repositories/proprietario.repository.js';
 
 const getAll = async () => getAllProprietarios();
 
+const getById = async (id) => getByIdProprietario(id);
+
 export {
-    getAll
+    getAll,
+    getById
 }
