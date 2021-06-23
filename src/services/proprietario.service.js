@@ -2,7 +2,8 @@ import {
     getAllProprietarios,
     getByIdProprietario,
     createProprietario,
-    updateProprietario
+    updateProprietario,
+    deleteProprietario
 } from '../repositories/proprietario.repository.js';
 
 const getAll = async () => getAllProprietarios();
@@ -13,9 +14,12 @@ const save = async (entity) => createProprietario(entity);
 
 const update = async (entity) => updateProprietario(entity);
 
+const remove = async (id) => deleteProprietario(id);
+
 export {
     getAll,
     getById,
     save,
-    update
+    update,
+    remove
 }

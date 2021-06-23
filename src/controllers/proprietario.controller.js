@@ -2,6 +2,7 @@ import logger from '../register.logger.js';
 import {
     getAll,
     getById,
+    remove,
     save,
     update
 } from '../services/proprietario.service.js';
@@ -60,9 +61,21 @@ const updateProprietario = async (req, res, next) => {
     }
 }
 
+const removeProprietario = async (req, res, next) => {
+    try {
+        const removed = await remove(req.params.id);
+        const statusCode = removed ? 204 : 404;
+        res.status(statusCode).end();
+        logger.info('DELETE /proprietarios');
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
     findAll,
     findById,
     register,
-    updateProprietario
+    updateProprietario,
+    removeProprietario
 }
