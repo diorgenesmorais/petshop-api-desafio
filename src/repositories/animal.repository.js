@@ -1,8 +1,15 @@
 import Animal from '../models/animal.model.js';
+import Proprietario from '../models/proprietario.model.js';
 
 const getAllAnimais = async () => {
     try {
-        return await Animal.findAll();
+        return await Animal.findAll({
+            include: [
+                {
+                    model: Proprietario
+                }
+            ]
+        });
     } catch (error) {
         throw error;
     }
