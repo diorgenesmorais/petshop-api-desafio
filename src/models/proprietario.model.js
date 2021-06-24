@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import connect from '../repositories/db.js';
+import { connect } from '../repositories/db.js';
 
 const Proprietario = connect.define('proprietarios', {
     id: {
@@ -18,6 +18,4 @@ const Proprietario = connect.define('proprietarios', {
     }
 }, { underscored: true });
 
-export {
-    Proprietario
-}
+export default Proprietario;

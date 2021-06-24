@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-import connect from '../repositories/db.js';
+import { connect } from '../repositories/db.js';
 import Proprietario from './proprietario.model.js';
 
 const Animal = connect.define('animais', {
@@ -21,6 +21,4 @@ const Animal = connect.define('animais', {
 
 Animal.belongsTo(Proprietario, { foreignKey: 'proprietariosId' });
 
-export {
-    Animal
-}
+export default Animal;
