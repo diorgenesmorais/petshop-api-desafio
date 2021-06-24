@@ -1,17 +1,14 @@
-import pg from 'pg';
+import Sequelize from 'sequelize';
 
-const connect = async () => {
-    if (global.connection) {
-        return global.connection.connect();
+const connect = new Sequelize(
+    process.env.DATABASE_URL,
+    {
+        dialect: 'postgres',
+        define: {
+            timestamps: false
+        }
     }
-
-    const pool = new pg.Pool({
-        connectionString: process.env.DATABASE_URL
-    });
-    global.connection = pool;
-
-    return pool.connect();
-}
+);
 
 export {
     connect
