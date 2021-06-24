@@ -2,7 +2,7 @@ import Proprietario from '../models/proprietario.model.js';
 
 const getAllProprietarios = async () => {
     try {
-        return null;
+        return await Proprietario.findAll();
     } catch (error) {
         throw error;
     }
@@ -10,7 +10,7 @@ const getAllProprietarios = async () => {
 
 const getByIdProprietario = async (id) => {
     try {
-        return null;
+        return await Proprietario.findByPk(id);
     } catch (error) {
         throw error;
     }
@@ -26,7 +26,12 @@ const createProprietario = async (proprietario) => {
 
 const updateProprietario = async (proprietario) => {
     try {
-        return null;
+        await Proprietario.update(proprietario, {
+            where:{
+                id: proprietario.id
+            }
+        });
+        return await getByIdProprietario(proprietario.id);
     } catch (error) {
         throw error;
     }
@@ -34,7 +39,11 @@ const updateProprietario = async (proprietario) => {
 
 const deleteProprietario = async (id) => {
     try {
-        return null;
+        return await Proprietario.destroy({
+            where: {
+                id: id
+            }
+        });
     } catch (error) {
         throw error;
     }
