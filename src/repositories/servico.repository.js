@@ -1,7 +1,7 @@
 import Servico from '../models/servico.model.js';
 import Animal from '../models/animal.model.js';
 
-const getAllAnimais = async () => {
+const getAllServicos = async () => {
     try {
         return await Servico.findAll({
             include: [
@@ -56,7 +56,7 @@ const deleteServico = async (id) => {
     }
 }
 
-const getByProprietario = async (proprietarioId) => {
+const getByProprietario = async (proprietariosId) => {
     try {
         return await Servico.findAll({
             include: [
@@ -74,7 +74,7 @@ const getByProprietario = async (proprietarioId) => {
 }
 
 export {
-    getAllAnimais,
+    getAllServicos,
     getByIdServico,
     createServico,
     updateServico,

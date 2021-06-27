@@ -10,10 +10,10 @@ import {
 
 const findAll = async (req, res, next) => {
     try {
-        const { proprietarios_id } = req.query;
+        const { proprietariosId } = req.query;
         let result;
-        if (proprietarios_id) {
-            result = await filter(proprietarios_id);
+        if (proprietariosId) {
+            result = await filter(proprietariosId);
         } else {
             result = await getAll();
         }
