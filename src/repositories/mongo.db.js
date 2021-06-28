@@ -1,5 +1,5 @@
-import { MongoClient } from 'mongodb';
+import mongodb from 'mongodb';
 
 export function getClient() {
-    return new MongoClient(process.env.DB_MONGO);
+    return new mongodb.MongoClient(process.env.DB_MONGO);
 }

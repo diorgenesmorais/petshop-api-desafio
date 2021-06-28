@@ -5,6 +5,7 @@ import logger from './register.logger.js';
 import proprietarioRouter from './routers/proprietario.router.js';
 import animalRouter from './routers/animal.router.js';
 import servicoRouter from './routers/servico.router.js';
+import postsRouter from './routers/post.router.js';
 
 dotenv.config();
 global.logger = logger;
@@ -16,6 +17,7 @@ app.use(cors());
 app.use('/proprietarios', proprietarioRouter);
 app.use('/animais', animalRouter);
 app.use('/servicos', servicoRouter);
+app.use('/posts', postsRouter);
 
 app.use((err, req, res, next) => {
     logger.error(`${req.method} ${req.baseUrl} - ${err.message}`);
