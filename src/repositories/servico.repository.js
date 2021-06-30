@@ -1,5 +1,6 @@
 import Servico from '../models/servico.model.js';
 import Animal from '../models/animal.model.js';
+import Proprietario from '../models/proprietario.model.js';
 
 const getAllServicos = async () => {
     try {
@@ -17,7 +18,22 @@ const getAllServicos = async () => {
 
 const getByIdServico = async (id) => {
     try {
-        return await Servico.findByPk(id);
+        //return await Servico.findByPk(id);
+        return await Servico.findAll({
+            include: [
+                {
+                    model: Animal,
+                    include: [
+                        {
+                            model: Proprietario
+                        }
+                    ]
+                }
+            ],
+            where: {
+                id
+            }
+        })
     } catch (error) {
         throw error;
     }

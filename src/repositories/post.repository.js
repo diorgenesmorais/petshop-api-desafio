@@ -4,7 +4,6 @@ const getAllPosts = async () => {
     const client = getClient();
     try {
         await client.connect();
-        console.log('conectou ao Mongo DB');
         return await client.db('petshop').collection('posts').find({}).toArray();
     } catch (error) {
         throw error;
@@ -13,6 +12,20 @@ const getAllPosts = async () => {
     }
 }
 
+const createPost = async (post) => {
+    const client = getClient();
+    try {
+        await client.connect();
+        const { ops } = await client.db('petshop').collection('posts').insertOne(post);
+        return ops[0];
+    } catch (error) {
+        throw error;
+    } finally {
+        await client.close();
+    }
+}
+
 export {
-    getAllPosts
+    getAllPosts,
+    createPost
 }
