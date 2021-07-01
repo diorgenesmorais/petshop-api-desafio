@@ -43,8 +43,24 @@ const updateOne = async (post) => {
     }
 }
 
+const findOne = async (id) => {
+    const client = getClient();
+    try {
+        await client.connect();
+        const result = await client.db('petshop').collection('posts').findOne({
+            _id: mongodb.ObjectId(id)
+        });
+        return result;
+    } catch (error) {
+        throw error;
+    } finally {
+        await client.close();
+    }
+}
+
 export {
     getAllPosts,
     createPost,
-    updateOne
+    updateOne,
+    findOne
 }

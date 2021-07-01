@@ -1,5 +1,10 @@
 import logger from '../register.logger.js';
-import { getAllPosts, createPost, updateOne } from '../repositories/post.repository.js';
+import {
+    getAllPosts,
+    createPost,
+    updateOne,
+    findOne
+} from '../repositories/post.repository.js';
 
 const findAll = async (req, res, next) => {
     try {
@@ -41,8 +46,19 @@ const updatePost = async (req, res, next) => {
     }
 }
 
+const findById = async (req, res, next) => {
+    try {
+        const result = await findOne(req.params.id);
+        res.send(result);
+        logger.info('GET /posts by id');
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
     findAll,
     createNewPost,
-    updatePost
+    updatePost,
+    findById
 }
