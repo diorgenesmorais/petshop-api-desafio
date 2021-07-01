@@ -1,5 +1,5 @@
 import logger from '../register.logger.js';
-import { getAllPosts, createPost } from '../repositories/post.repository.js';
+import { getAllPosts, createPost, updateOne } from '../repositories/post.repository.js';
 
 const findAll = async (req, res, next) => {
     try {
@@ -28,7 +28,21 @@ const createNewPost = async (req, res, next) => {
     }
 }
 
+const updatePost = async (req, res, next) => {
+    const post = req.body;
+    try {
+        validate(post);
+        const modifiedCount = await updateOne(post);
+        const message = modifiedCount ? 'Foi atualizado' : 'Não foi atualizado';
+        res.status(200).send({ message });
+        logger.info(`PUT /posts ${message}`);
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
     findAll,
-    createNewPost
+    createNewPost,
+    updatePost
 }
