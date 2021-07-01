@@ -18,8 +18,7 @@ const getAllServicos = async () => {
 
 const getByIdServico = async (id) => {
     try {
-        //return await Servico.findByPk(id);
-        return await Servico.findAll({
+        return await Servico.findOne({
             include: [
                 {
                     model: Animal,
@@ -33,7 +32,7 @@ const getByIdServico = async (id) => {
             where: {
                 id
             }
-        })
+        });
     } catch (error) {
         throw error;
     }
